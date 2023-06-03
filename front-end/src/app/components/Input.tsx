@@ -1,17 +1,16 @@
 import React from "react";
+import { FieldValues, UseFormRegister } from "react-hook-form";
 
 type InputProps = {
-  value: string | number;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   type: string;
+  register: UseFormRegister<FieldValues> | any;
   placeholder: string;
   className?: string;
 };
 
 export default function Input({
   className,
-  value,
-  onChange,
+  register,
   type,
   placeholder,
 }: InputProps) {
@@ -23,9 +22,8 @@ export default function Input({
        focus:outline-green-400
        rounded-md p-3 font-bold
        text-zinc-800 ${className}`}
+      {...register(type)}
       type={type}
-      onChange={onChange}
-      value={value}
       placeholder={placeholder}
     />
   );
