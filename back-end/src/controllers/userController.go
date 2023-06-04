@@ -10,9 +10,14 @@ import (
 
 func UserCreate(c *gin.Context) {
 	//get data from request body
-
+	var body struct {
+		Name     string `json:"name"`
+		Password string `json:"password"`
+		Email    string `json:"email"`
+	}
+	c.Bind(&body)
 	//create user
-	user := models.User{Name: "Josiel", Password: "password", Email: "teste@teste.com"}
+	user := models.User{Name: body.Name, Password: body.Password, Email: body.Email}
 	result := database.DB.Create(&user)
 	//return user
 	if result.Error != nil {
