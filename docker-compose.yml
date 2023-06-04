@@ -1,0 +1,67 @@
+version: '3.9'
+services:
+  frontend:
+    build: ./front-end
+    ports:
+      - 3000:3000
+    platform: linux/x86_64
+    working_dir: /app-frontend
+    volumes: 
+      - ./front-end/src:/app-frontend/src
+      - ./front-end/package.json:/app-frontend/package.json
+    environment:
+      - REACT_APP_HOSTNAME=localhost
+      - REACT_APP_BACKEND_PORT=3001
+    # depends_on:
+    #   backend:
+    #     condition: service_healthy
+    # Os `healthcheck` devem garantir que a aplicação
+    # está operacional, antes de liberar o container
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]  # Caso utilize outra porta interna para o front, altere ela aqui também
+      timeout: 10s
+      retries: 5
+  # backend:
+  #   container_name: app_backend
+  #   build: ./back-end
+  #   ports:
+  #     - 3001:3001
+  #   platform: linux/x86_64
+  #   working_dir: /app-backend
+  #   volumes: 
+  #     - ./back-end/src:/app-backend/src
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #   environment:
+  #     # Os dados abaixo se referem ao container `db`
+  #     # Dica: Relembre aqui da comunicação interna entre containers
+  #     - JWT_SECRET=jwt_secret
+  #     - NODE_ENV=development
+  #     - API_PORT=3001
+  #     - HOSTNAME=db
+  #     - MYSQL_HOST=db
+  #     - MYSQL_PORT=3306
+  #     - MYSQL_USER=root
+  #     - MYSQL_PASSWORD=senhaDoDB 
+  #     - MYSQL_DB_NAME=delivery-app
+  #     - EVAL_ALWAYS_RESTORE_DEV_DB=true
+  #   healthcheck:
+  #     test: ["CMD", "lsof", "-t", "-i:3001"] # Caso utilize outra porta interna para o back, altere ela aqui também
+  #     timeout: 10s
+  #     retries: 5
+  # db:
+  #   image: mysql:8.0.21
+  #   container_name: db
+  #   platform: linux/x86_64
+  #   ports:
+  #     - 3306:3306
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=senhaDoDB
+  #   restart: 'always'
+  #   healthcheck:
+  #     test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"] # Deve aguardar o banco ficar operacional
+  #     timeout: 10s
+  #     retries: 5
+  #   cap_add:
+  #     - SYS_NICE # Deve omitir alertas menores

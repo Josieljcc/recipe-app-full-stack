@@ -16,11 +16,11 @@ export default function Input({
 }: InputProps) {
   return (
     <input
-      className={`bg-zinc-400 border-none
-      w-full
-      placeholder:text-zinc-600
-       focus:outline-green-400
-       rounded-md p-3 font-bold
+      className={`border-2 focus:border-zinc-700
+        w-full focus:outline-double bg-zinc-100
+        outline-zinborder-zinc-700
+
+       rounded-md p-3 font-bold ps-4
        text-zinc-800 ${className}`}
       {...register(type)}
       type={type}

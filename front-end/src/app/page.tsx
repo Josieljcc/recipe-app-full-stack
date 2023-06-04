@@ -1,48 +1,43 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
-import Input from "@/app/components/Input";
+import imgBg from "@/../public/initialBg.jpg";
 import Button from "./components/Button";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "@/validations/loginSchema";
-import { z } from "zod";
-//
-
-type LoginFormData = z.infer<typeof loginSchema>;
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormData>({
-    resolver: zodResolver(loginSchema),
-  });
-
-  function login(data: any) {
-    console.log(data);
-  }
-
+  const router = useRouter();
   return (
-    <main className="flex flex-col items-center justify-center bg-zinc-800 h-screen">
-      <form
-        onSubmit={handleSubmit(login)}
-        className="flex rounded-md items-center 
-        justify-center p-4 gap-4 flex-col w-[90%]
-        bg-zinc-600"
-        action="submit"
-      >
-        <Input type="email" register={register} placeholder="email" />
-        {errors.email && (
-          <span className="text-zinc-200">{errors.email.message}</span>
-        )}
-        <Input type="password" register={register} placeholder="password" />
-        {errors.password && (
-          <span className="text-zinc-200">{errors.password.message}</span>
-        )}
-        <Button type="submit">Entrar</Button>
-      </form>
+    <main
+      className="flex relative flex-col py-10 pb-20 text-center
+    text-zinc-300 font-bold items-center justify-between h-screen"
+    >
+      <Image
+        className="absolute -z-10 top-0 left-0 object-cover w-full h-full"
+        src={imgBg}
+        alt="backgroud"
+      ></Image>
+      <div
+        className="absolute -z-10 top-0 left-0 object-cover w-full h-full
+        bg-gradient-to-b to-black/70 from-transparent"
+      ></div>
+      <div
+        className="absolute -z-10 top-0 left-0 object-cover w-full h-full
+        bg-gradient-to-t to-black/30 from-transparent"
+      ></div>
+      <p className="text-sm">50k+ Recipes</p>
+      <div className="w-full flex flex-col gap-4 items-center justify-between">
+        <h1 className="text-5xl font-bold leading-[4rem]">
+          Let's <br /> Cooking
+        </h1>
+        <h2 className="text-base -mt-4">Find best recipes</h2>
+        <Button
+          onClick={() => router.push("/login")}
+          type="button"
+          className="w-[90%]"
+        >
+          Start Cooking ➤
+        </Button>
+      </div>
     </main>
   );
 }

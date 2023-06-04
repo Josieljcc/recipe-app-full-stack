@@ -10,7 +10,7 @@ type ButtonProp = {
 function Button({ onClick, type, children, className }: ButtonProp) {
   return (
     <button
-      className={`bg-green-500 w-full p-2 font-bold rounded-md
+      className={`bg-green-700 text-zinc-200 p-2 font-bold rounded-md
       ${className}`}
       type={type}
       onClick={onClick}

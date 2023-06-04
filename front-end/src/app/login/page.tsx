@@ -1,0 +1,65 @@
+"use client";
+import Image from "next/image";
+import { useState } from "react";
+import Input from "@/app/components/Input";
+import Button from "@/app/components/Button";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema } from "@/validations/loginSchema";
+import { z } from "zod";
+import imgBg from "@/../public/loginBg.jpg";
+
+type LoginFormData = z.infer<typeof loginSchema>;
+
+export default function Home() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
+  });
+
+  function login(data: LoginFormData) {
+    console.log(data);
+  }
+
+  return (
+    <main className="flex flex-col items-center justify-center relative h-screen">
+      <Image
+        className="absolute brightness-90 -z-10 top-0 object-cover w-full h-full"
+        src={imgBg}
+        alt="backgroud"
+      ></Image>
+      <div
+        className="absolute -z-10 top-0 left-0 object-cover w-full h-full
+        bg-gradient-to-b to-black/70 from-transparent"
+      ></div>
+      <div
+        className="absolute -z-10 top-0 left-0 object-cover w-full h-full
+        bg-gradient-to-t to-black/60 from-transparent"
+      ></div>
+      <form
+        onSubmit={handleSubmit(login)}
+        className="flex rounded-md items-center 
+        justify-center p-4 py-10 gap-4 flex-col w-[90%]
+        bg-black/70"
+        action="submit"
+      >
+        <Input type="email" register={register} placeholder="email" />
+        {errors.email && (
+          <span className="text-red-600 text-sm">{errors.email.message}</span>
+        )}
+        <Input type="password" register={register} placeholder="password" />
+        {errors.password && (
+          <span className="text-red-600 text-sm">
+            {errors.password.message}
+          </span>
+        )}
+        <Button className="w-full" type="submit">
+          Entrar
+        </Button>
+      </form>
+    </main>
+  );
+}
