@@ -5,12 +5,11 @@ import Input from "@/app/components/Input";
 import Button from "@/app/components/Button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "@/validations/loginSchema";
 import { z } from "zod";
 import imgBg from "@/../public/loginBg.jpg";
-import Link from "next/link";
+import { registerSchema } from "@/validations/registerSchema";
 
-type LoginFormData = z.infer<typeof loginSchema>;
+type LoginFormData = z.infer<typeof registerSchema>;
 
 export default function Home() {
   const {
@@ -18,7 +17,7 @@ export default function Home() {
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<LoginFormData>({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(registerSchema),
   });
 
   function login(data: LoginFormData) {
@@ -48,6 +47,10 @@ export default function Home() {
         bg-black/70"
         action="submit"
       >
+        <Input type="name" register={register} placeholder="Name" />
+        {errors.name && (
+          <span className="text-red-600 text-sm">{errors.name.message}</span>
+        )}
         <Input type="email" register={register} placeholder="Email" />
         {errors.email && (
           <span className="text-red-600 text-sm">{errors.email.message}</span>
@@ -59,14 +62,8 @@ export default function Home() {
           </span>
         )}
         <Button disabled={!isValid} className="w-full" type="submit">
-          Enter
+          Register
         </Button>
-        <Link
-          className="text-zinc-300 text-sm underline hover:font-bold"
-          href={"/register"}
-        >
-          Don't have a acount?
-        </Link>
       </form>
     </main>
   );
