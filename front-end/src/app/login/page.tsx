@@ -15,13 +15,14 @@ export default function Home() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
   });
 
   function login(data: LoginFormData) {
     console.log(data);
+    console.log(!!errors);
   }
 
   return (
@@ -46,17 +47,21 @@ export default function Home() {
         bg-black/70"
         action="submit"
       >
-        <Input type="email" register={register} placeholder="email" />
+        <Input type="name" register={register} placeholder="Name" />
+        {errors.name && (
+          <span className="text-red-600 text-sm">{errors.name.message}</span>
+        )}
+        <Input type="email" register={register} placeholder="Email" />
         {errors.email && (
           <span className="text-red-600 text-sm">{errors.email.message}</span>
         )}
-        <Input type="password" register={register} placeholder="password" />
+        <Input type="password" register={register} placeholder="Password" />
         {errors.password && (
           <span className="text-red-600 text-sm">
             {errors.password.message}
           </span>
         )}
-        <Button className="w-full" type="submit">
+        <Button disabled={!isValid} className="w-full" type="submit">
           Entrar
         </Button>
       </form>
