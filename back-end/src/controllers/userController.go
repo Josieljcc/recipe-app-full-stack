@@ -25,7 +25,11 @@ func UserCreate(c *gin.Context) {
 		})
 		return
 	}
+
+	claims := c.MustGet("user").(gin.H)
+
 	c.JSON(http.StatusOK, gin.H{
-		"user": user,
+		"user":  user,
+		"token": claims,
 	})
 }
