@@ -26,7 +26,7 @@ services:
       - PROJECT_DIR=/back-end
       - CGO_ENABLED=0
       - PORT=3001
-      # - JWT_SECRET=jwt_secret
+      - JWT_SECRET=jwt_secret
       - HOSTNAME=db
       - MYSQL_HOST=db
       - MYSQL_PORT=3306

@@ -4,6 +4,7 @@ import (
 	"backend/src/controllers"
 	"backend/src/database"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,6 +15,8 @@ func init() {
 
 func main() {
 	app := gin.Default()
-	app.POST("/user", controllers.UserCreate)
-	app.Run() // listen and serve on 0.0.0.0:3001
+	app.Use(cors.Default())
+	app.POST("/register", controllers.UserCreate)
+	app.POST("/login", controllers.LoginController)
+	app.Run() // listen and serve on db:3001
 }

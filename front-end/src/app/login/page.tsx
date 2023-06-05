@@ -5,7 +5,7 @@ import Input from "@/app/components/Input";
 import Button from "@/app/components/Button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "@/validations/loginSchema";
+import { loginSchema } from "@/app/validations/loginSchema";
 import { z } from "zod";
 import imgBg from "@/../public/loginBg.jpg";
 import Link from "next/link";

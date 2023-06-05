@@ -7,7 +7,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import imgBg from "@/../public/loginBg.jpg";
-import { registerSchema } from "@/validations/registerSchema";
+import { registerSchema } from "@/app/validations/registerSchema";
+import { postApi } from "../utils/apiFunctions";
 
 type LoginFormData = z.infer<typeof registerSchema>;
 
@@ -20,9 +21,8 @@ export default function Home() {
     resolver: zodResolver(registerSchema),
   });
 
-  function login(data: LoginFormData) {
-    console.log(data);
-    console.log(!!errors);
+  async function login(data: LoginFormData) {
+    postApi("/register", data);
   }
 
   return (
