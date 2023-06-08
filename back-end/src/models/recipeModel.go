@@ -4,13 +4,14 @@ import "gorm.io/gorm"
 
 type Ingredient struct {
 	gorm.Model
-	Name string `json:"name"`
+	Name    string    `json:"name"`
+	Recipes []*Recipe `gorm:"many2many:recipe_ingredients;" json:"recipes"`
 }
 
 type Recipe struct {
 	gorm.Model
-	Title        string       `json:"title"`
-	Ingredients  []Ingredient `gorm:"foreignKey:id" json:"ingredients"`
-	Instructions string       `json:"instructions"`
-	ImageName    string       `json:"image"`
+	Title        string        `json:"title"`
+	Instructions string        `json:"instructions"`
+	ImageName    string        `json:"image"`
+	Ingredients  []*Ingredient `gorm:"many2many:recipe_ingredients;" json:"ingredients"`
 }

@@ -41,6 +41,10 @@ services:
       - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD=senhaDoDB
+    volumes:
+      - mysql-data:/var/lib/mysql
     restart: 'always'
     cap_add:
       - SYS_NICE # Deve omitir alertas menores
+volumes:
+  mysql-data:
