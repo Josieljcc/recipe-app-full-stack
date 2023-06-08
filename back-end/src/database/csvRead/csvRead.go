@@ -42,7 +42,9 @@ func main() {
 
 		// Split the ingredients string and create Ingredient objects
 		ingredientsStr := ingredientsCol.Elem(i).String()
-		ingredientsArr := strings.Split(ingredientsStr, ",")
+		ingredientsStr = strings.TrimPrefix(ingredientsStr, "[")
+		ingredientsStr = strings.TrimSuffix(ingredientsStr, "]")
+		ingredientsArr := strings.Split(ingredientsStr, "', '")
 		var ingredients []*models.Ingredient
 		for _, ingredientName := range ingredientsArr {
 			ingredient := &models.Ingredient{
