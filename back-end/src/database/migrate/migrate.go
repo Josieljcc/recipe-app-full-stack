@@ -11,4 +11,6 @@ func init() {
 
 func main() {
 	database.DB.AutoMigrate(&models.User{})
+	database.DB.AutoMigrate(&models.Recipe{})
+	database.DB.AutoMigrate(&models.Ingredient{})
 }
