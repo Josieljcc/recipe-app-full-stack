@@ -8,6 +8,7 @@ import (
 // get all recipes from database
 func GetAllRecipes() []models.Recipe {
 	var recipes []models.Recipe
-	database.DB.Preload("Ingredients").Limit(20).Offset(0).Find(&recipes)
+	// .Preload("Ingredients")
+	database.DB.Limit(2).Offset(0).Find(&recipes)
 	return recipes
 }
