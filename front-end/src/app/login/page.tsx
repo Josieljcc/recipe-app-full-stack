@@ -28,7 +28,7 @@ export default function Home() {
   async function login(data: LoginFormData) {
     const user: IUserLogin = await postLogin(data);
     localStorage.setItem("user", JSON.stringify(user));
-    router.push("/home");
+    router.push("/home/0");
   }
 
   return (
