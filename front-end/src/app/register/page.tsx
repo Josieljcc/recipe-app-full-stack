@@ -24,7 +24,7 @@ export default function Home() {
   const router = useRouter();
 
   async function login(data: LoginFormData) {
-    postApi("/register", data);
+    postApi(data);
     router.push("/login");
   }
 

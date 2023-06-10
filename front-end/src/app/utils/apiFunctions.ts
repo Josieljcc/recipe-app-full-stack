@@ -1,21 +1,12 @@
-import { IRecipe } from "../interfaces/IRecipe";
-import { IUser } from "../interfaces/IUser";
+import axios from "axios";
+import { ILogin, IRecipe, IUser, IUserLogin } from "../interfaces";
 
-export async function postApi <T>(endPoint: string, data: T): Promise<void> {
-    const response = await fetch(`http://localhost:3001${endPoint}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    const res = await response.json()
-    return res
+export async function postApi (data: IUser) {
+    const response = await axios.post(`http://localhost:3001/register`, data)
+    const res = await response.data
 }
 
-export async function getApiRecipes(endPoint: string): Promise<IRecipe> {
-    console.log(`http://localhost:3001${endPoint}`)
-    const response = await fetch(`http://localhost:3001${endPoint}`)
-    const res = await response.json()
-    return res
+export async function postLogin (data: ILogin): Promise<IUserLogin>{
+    const response = await axios.post('http://localhost:3001/login', data)
+    return response.data
 }

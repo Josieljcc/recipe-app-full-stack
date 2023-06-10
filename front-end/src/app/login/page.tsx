@@ -9,8 +9,9 @@ import { loginSchema } from "@/app/validations/loginSchema";
 import { z } from "zod";
 import imgBg from "@/../public/loginBg.jpg";
 import Link from "next/link";
-import { postApi } from "../utils/apiFunctions";
+import { postApi, postLogin } from "../utils/apiFunctions";
 import { useRouter } from "next/navigation";
+import { IUserLogin } from "../interfaces/IUserLogin";
 
 type LoginFormData = z.infer<typeof loginSchema>;
 
@@ -24,9 +25,10 @@ export default function Home() {
     resolver: zodResolver(loginSchema),
   });
 
-  function login(data: LoginFormData) {
-    const user = postApi("/login", data);
-    router.push("/login");
+  async function login(data: LoginFormData) {
+    const user: IUserLogin = await postLogin(data);
+    localStorage.setItem("user", JSON.stringify(user));
+    router.push("/home");
   }
 
   return (
