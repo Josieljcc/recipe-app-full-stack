@@ -10,3 +10,8 @@ export async function postLogin (data: ILogin): Promise<IUserLogin>{
     const response = await axios.post('http://localhost:3001/login', data)
     return response.data
 }
+
+export async function getRecipes (page: string): Promise<IRecipe[]> {
+    const response = await axios.get('http://192.168.1.107:3001/recipes')
+    return response.data.recipes
+}

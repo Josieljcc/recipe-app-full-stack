@@ -1,11 +1,17 @@
 import React from "react";
-import { IRecipe } from "../interfaces/IRecipe";
+import { IRecipe } from "../../interfaces/IRecipe";
 import axios from "axios";
-import RecipeCard from "../components/RecipeCard";
+import RecipeCard from "../../components/RecipeCard";
+import { getRecipes } from "@/app/utils/apiFunctions";
 
-async function Home() {
-  const response = await axios.get("http://192.168.1.107:3001/recipes");
-  const { recipes } = response.data;
+type params = {
+  params: {
+    page: string;
+  };
+};
+
+async function Home({ params: { page } }: params) {
+  const recipes = await getRecipes(page);
   return (
     <div className="min-h-screen px-4 flex bg-zinc-800 text-zinc-300">
       <div className="sticky h-screen flex  items-center top-0">
