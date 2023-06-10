@@ -6,10 +6,12 @@ import (
 )
 
 // get all recipes from database
-func GetAllRecipes() []models.Recipe {
+func GetAllRecipes(page int) []models.Recipe {
+	limit := 10
+	offset := page * limit
 	var recipes []models.Recipe
 	// .Preload("Ingredients")
-	database.DB.Preload("Ingredients").Limit(10).Offset(0).Find(&recipes)
+	database.DB.Preload("Ingredients").Limit(limit).Offset(offset).Find(&recipes)
 	return recipes
 }
 

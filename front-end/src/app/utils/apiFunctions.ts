@@ -12,6 +12,6 @@ export async function postLogin (data: ILogin): Promise<IUserLogin>{
 }
 
 export async function getRecipes (page: string): Promise<IRecipe[]> {
-    const response = await axios.get('http://192.168.1.107:3001/recipes')
+    const response = await axios.get(`http://192.168.1.107:3001/recipes/${page}`)
     return response.data.recipes
 }
