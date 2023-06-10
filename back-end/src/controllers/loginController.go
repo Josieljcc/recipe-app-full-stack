@@ -33,5 +33,7 @@ func LoginController(c *gin.Context) {
 	token := auth.GenerateToken(&tokenData)
 	c.JSON(http.StatusOK, gin.H{
 		"token": token,
+		"name":  result.Data.(models.User).Name,
+		"email": result.Data.(models.User).Email,
 	})
 }

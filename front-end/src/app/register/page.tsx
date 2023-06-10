@@ -9,6 +9,7 @@ import { z } from "zod";
 import imgBg from "@/../public/loginBg.jpg";
 import { registerSchema } from "@/app/validations/registerSchema";
 import { postApi } from "../utils/apiFunctions";
+import { useRouter } from "next/navigation";
 
 type LoginFormData = z.infer<typeof registerSchema>;
 
@@ -20,9 +21,11 @@ export default function Home() {
   } = useForm<LoginFormData>({
     resolver: zodResolver(registerSchema),
   });
+  const router = useRouter();
 
   async function login(data: LoginFormData) {
     postApi("/register", data);
+    router.push("/login");
   }
 
   return (

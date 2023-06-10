@@ -9,10 +9,13 @@ import { loginSchema } from "@/app/validations/loginSchema";
 import { z } from "zod";
 import imgBg from "@/../public/loginBg.jpg";
 import Link from "next/link";
+import { postApi } from "../utils/apiFunctions";
+import { useRouter } from "next/navigation";
 
 type LoginFormData = z.infer<typeof loginSchema>;
 
 export default function Home() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -22,8 +25,8 @@ export default function Home() {
   });
 
   function login(data: LoginFormData) {
-    console.log(data);
-    console.log(!!errors);
+    const user = postApi("/login", data);
+    router.push("/login");
   }
 
   return (
