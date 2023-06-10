@@ -1,7 +1,9 @@
+import { IIngredient } from "./IIngredient";
+
 export interface IRecipe {
     ID: number;
     title: string;
-    description: string;
-    ingredients: string[];
+    instructions: string;
+    ingredients: IIngredient[];
     image: string;
 }
