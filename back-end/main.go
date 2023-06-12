@@ -22,10 +22,6 @@ func main() {
 	app.GET("/recipe/:id", controllers.GetRecipeById)
 	app.POST("/register", controllers.UserCreate)
 	app.POST("/login", controllers.LoginController)
-	app.GET("/login", func(ctx *gin.Context) {
-		ctx.JSON(200, gin.H{
-			"message": "login",
-		})
-	})
+	app.GET("/video/:id", controllers.GetVideoUrl)
 	app.Run() // listen and serve on db:3001
 }
