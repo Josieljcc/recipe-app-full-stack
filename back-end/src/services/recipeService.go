@@ -21,3 +21,10 @@ func GetRecipeById(id string) models.Recipe {
 	database.DB.Preload("Ingredients").First(&recipe, id)
 	return recipe
 }
+
+// get recipes by title from database
+func GetRecipesByTitle(q string) []models.Recipe {
+	var recipes []models.Recipe
+	database.DB.Preload("Ingredients").Limit(10).Where("title LIKE ?", "%"+q+"%").Find(&recipes)
+	return recipes
+}
