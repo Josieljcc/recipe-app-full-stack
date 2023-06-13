@@ -11,7 +11,7 @@ type ButtonProp = {
 function Button({ onClick, type, children, className, disabled }: ButtonProp) {
   return (
     <button
-      className={`bg-green-700 text-zinc-200 p-2 font-bold rounded-md
+      className={`bg-red-600 text-zinc-200 p-2 font-bold rounded-md
       disabled:bg-gray-400 disabled:text-zinc-500 disabled:cursor-not-allowed
       ease-in-out duration-150
       ${className}`}
