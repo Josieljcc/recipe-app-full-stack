@@ -19,6 +19,7 @@ func main() {
 	app.Use(cors.Default())
 	app.StaticFS("/images", http.Dir("src/images"))
 	app.GET("/recipes/", controllers.GetRecipeByTitle)
+	app.PATCH("/favorite/")
 	app.GET("/recipes/:page", controllers.GetAllRecipes)
 	app.GET("/recipe/:id", controllers.GetRecipeById)
 	app.POST("/register", controllers.UserCreate)
