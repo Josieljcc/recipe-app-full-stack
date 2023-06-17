@@ -30,3 +30,11 @@ func UserCreate(c *gin.Context) {
 		"user": user,
 	})
 }
+
+func GetFavorites(c *gin.Context) {
+	id := c.MustGet("id").(float64)
+	favorites := services.GetFavorites(id)
+	c.JSON(http.StatusOK, gin.H{
+		"favorites": favorites,
+	})
+}
