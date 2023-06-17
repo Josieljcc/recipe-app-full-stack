@@ -29,7 +29,11 @@ func LoginController(c *gin.Context) {
 		return
 	}
 	// create token
-	tokenData := interfaces.IDataToken{Name: result.Data.(models.User).Name, Id: result.Data.(models.User).ID, Email: result.Data.(models.User).Email}
+	tokenData := interfaces.IDataToken{
+		Name:  result.Data.(models.User).Name,
+		Id:    result.Data.(models.User).ID,
+		Email: result.Data.(models.User).Email,
+	}
 	token := auth.GenerateToken(&tokenData)
 	c.JSON(http.StatusOK, gin.H{
 		"token": token,

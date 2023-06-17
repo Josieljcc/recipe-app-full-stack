@@ -33,7 +33,8 @@ func ValidateToken(tokenString string) (gin.H, error) {
 	// Retrieve user information from claims
 	name := claims["name"].(string)
 	email := claims["email"].(string)
+	id := claims["id"].(float64)
 
-	return gin.H{"name": name, "email": email}, nil
+	return gin.H{"name": name, "email": email, "id": id}, nil
 
 }

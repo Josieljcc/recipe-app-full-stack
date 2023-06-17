@@ -10,7 +10,7 @@ import (
 func GenerateToken(data *interfaces.IDataToken) string {
 	clains := jwt.MapClaims{
 		"email": data.Email,
-		"exp":   0,
+		"id":    data.Id,
 		"name":  data.Name,
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, clains)
