@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect } from "react";
-import axios from "axios";
 import RecipeCard from "../../components/RecipeCard";
 import { getRecipes } from "@/app/utils/apiFunctions";
 import { IRecipe } from "@/app/interfaces";
 import { useRouter } from "next/navigation";
 import Footer from "@/app/components/Footer/Footer";
+import Header from "@/app/components/Header/Header";
 
 type params = {
   params: {
@@ -32,8 +32,9 @@ function Home({ params: { page } }: params) {
     router.push(`/home/${parseInt(page) + 1}`);
   };
   return (
-    <div className="min-h-screen px-4 flex bg-zinc-800 text-zinc-300">
-      <div className="sticky h-screen flex  items-center top-0">
+    <div className="relative min-h-screen px-4 flex  bg-zinc-800 text-zinc-300 pb-16 pt-36">
+      <Header />
+      <div className="fixed h-screen flex  items-center top-0">
         <button
           className="rotate-180 flex items-center justify-center rounded-full h-12 p-4 bg-zinc-700 text-zinc-300"
           onClick={handlePrev}
@@ -46,7 +47,7 @@ function Home({ params: { page } }: params) {
           <RecipeCard {...recipe} key={recipe.ID} />
         ))}
       </div>
-      <div className="sticky h-screen flex  items-center top-0">
+      <div className="fixed h-screen flex right-4 items-center top-0">
         <button
           className="flex items-center justify-center rounded-full h-12 p-4 bg-zinc-700 text-zinc-300"
           onClick={handleNext}
