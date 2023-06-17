@@ -3,6 +3,7 @@ package main
 import (
 	"backend/src/controllers"
 	"backend/src/database"
+	"backend/src/middlewares"
 	"backend/src/models"
 	"net/http"
 
@@ -25,6 +26,7 @@ func main() {
 	app.PATCH("/favorite/")
 	app.GET("/recipes/:page", controllers.GetAllRecipes)
 	app.GET("/recipe/:id", controllers.GetRecipeById)
+	app.POST("/favorite", middlewares.ValidateToken(), controllers.InsertFavoriteRecipe)
 	app.POST("/register", controllers.UserCreate)
 	app.POST("/login", controllers.LoginController)
 	app.GET("/video/:id", controllers.GetVideoUrl)

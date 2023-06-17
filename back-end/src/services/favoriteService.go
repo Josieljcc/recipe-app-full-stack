@@ -6,7 +6,7 @@ import (
 )
 
 // add favorite to user
-func InsertFavoriteRecipe(userID uint, recipeID uint) error {
+func InsertFavoriteRecipe(userID float64, recipeID uint) error {
 	var user models.User
 	if err := database.DB.First(&user, userID).Error; err != nil {
 		return err

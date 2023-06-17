@@ -2,7 +2,6 @@ package middlewares
 
 import (
 	"backend/src/auth"
-	"fmt"
 
 	"github.com/gin-gonic/gin"
 )
@@ -22,7 +21,7 @@ func ValidateToken() gin.HandlerFunc {
 			return
 		}
 		claim, err := auth.ValidateToken(token)
-		fmt.Println(claim)
+		id := claim["id"].(float64)
 		if err != nil {
 			c.JSON(401, gin.H{
 				"error":   "unauthorized",
@@ -30,7 +29,7 @@ func ValidateToken() gin.HandlerFunc {
 			})
 			return
 		}
-		c.Set("user", claim)
+		c.Set("id", id)
 		c.Next()
 	}
 }
