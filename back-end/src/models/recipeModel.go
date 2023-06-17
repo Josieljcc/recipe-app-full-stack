@@ -14,5 +14,5 @@ type Recipe struct {
 	Instructions string        `json:"instructions"`
 	ImageName    string        `json:"image"`
 	Ingredients  []*Ingredient `gorm:"many2many:recipe_ingredients;" json:"ingredients"`
-	UserID       uint          `json:"user_id"`
+	Users        []*User       `gorm:"many2many:user_favorites;" json:"users"`
 }
