@@ -25,10 +25,6 @@ services:
     depends_on: 
       db:
         condition: service_healthy
-    healthcheck:
-      test: ["CMD", "lsof", "-t", "-i:3001"] 
-      timeout: 10s
-      retries: 5
     volumes: 
       - ./back-end:/app-backend
     environment:
