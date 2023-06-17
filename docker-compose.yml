@@ -6,6 +6,8 @@ services:
       - 3000:3000
     platform: linux/x86_64
     working_dir: /app-frontend
+    depends_on: 
+      - backend
     volumes: 
       - ./front-end/src:/app-frontend/src
       - ./front-end/package.json:/app-frontend/package.json
@@ -20,6 +22,13 @@ services:
       - 3001:3001
     platform: linux/x86_64
     working_dir: /app-backend
+    depends_on: 
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"] 
+      timeout: 10s
+      retries: 5
     volumes: 
       - ./back-end:/app-backend
     environment:
@@ -35,17 +44,20 @@ services:
       - MYSQL_PASSWORD=senhaDoDB
       - MYSQL_DB_NAME=app-recipes-db
   db:
-    image: mysql:8.0.21
+    image: mysql:latest
     container_name: db
     platform: linux/x86_64
     ports:
       - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD=senhaDoDB
+      - MYSQL_DATABASE=app-recipes-db
     volumes:
       - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
     restart: 'always'
-    cap_add:
-      - SYS_NICE # Deve omitir alertas menores
 volumes:
   mysql-data:
