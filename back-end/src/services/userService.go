@@ -17,3 +17,9 @@ func GetUserByID(id string) models.User {
 	database.DB.First(&user, id)
 	return user
 }
+
+func GetFavorites(id float64) []*models.Recipe {
+	var user models.User
+	database.DB.Preload("Favorites").Find(&user, id)
+	return user.Favorites
+}

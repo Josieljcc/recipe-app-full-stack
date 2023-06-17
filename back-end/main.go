@@ -24,6 +24,7 @@ func main() {
 	app.StaticFS("/images", http.Dir("src/images"))
 	app.GET("/recipes/", controllers.GetRecipeByTitle)
 	app.PATCH("/favorite/")
+	app.GET("/favorite", middlewares.ValidateToken(), controllers.GetFavorites)
 	app.GET("/recipes/:page", controllers.GetAllRecipes)
 	app.GET("/recipe/:id", controllers.GetRecipeById)
 	app.POST("/favorite", middlewares.ValidateToken(), controllers.InsertFavoriteRecipe)
