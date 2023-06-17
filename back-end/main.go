@@ -3,6 +3,7 @@ package main
 import (
 	"backend/src/controllers"
 	"backend/src/database"
+	"backend/src/models"
 	"net/http"
 
 	"github.com/gin-contrib/cors"
@@ -12,6 +13,8 @@ import (
 func init() {
 	// connect to database
 	database.ConnectToDB()
+	// migrate models
+	database.DB.AutoMigrate(&models.User{}, &models.Recipe{}, &models.Ingredient{})
 }
 
 func main() {
