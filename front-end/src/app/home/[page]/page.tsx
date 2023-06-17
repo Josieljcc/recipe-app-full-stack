@@ -5,6 +5,7 @@ import RecipeCard from "../../components/RecipeCard";
 import { getRecipes } from "@/app/utils/apiFunctions";
 import { IRecipe } from "@/app/interfaces";
 import { useRouter } from "next/navigation";
+import Footer from "@/app/components/Footer/Footer";
 
 type params = {
   params: {
@@ -53,6 +54,7 @@ function Home({ params: { page } }: params) {
           ➤
         </button>
       </div>
+      <Footer />
     </div>
   );
 }
