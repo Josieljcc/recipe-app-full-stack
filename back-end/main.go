@@ -35,7 +35,7 @@ func main() {
 	app.GET("/recipes/:page", controllers.GetAllRecipes)
 	app.GET("/recipe/:id", controllers.GetRecipeById)
 	app.POST("/favorite", middlewares.ValidateToken(), controllers.InsertFavoriteRecipe)
-	app.DELETE("/favorite", middlewares.ValidateToken(), controllers.RemoveFavoriteRecipe)
+	app.DELETE("/favorite/:recipeId", middlewares.ValidateToken(), controllers.RemoveFavoriteRecipe)
 	app.POST("/register", controllers.UserCreate)
 	app.POST("/login", controllers.LoginController)
 	app.GET("/video/:id", controllers.GetVideoUrl)

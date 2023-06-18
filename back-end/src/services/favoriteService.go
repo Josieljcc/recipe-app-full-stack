@@ -26,7 +26,7 @@ func InsertFavoriteRecipe(userID float64, recipeID uint) error {
 	return nil
 }
 
-func RemoveFavoriteRecipe(userID float64, recipeID uint) error {
+func RemoveFavoriteRecipe(userID float64, recipeID string) error {
 	var user models.User
 	if err := database.DB.Preload("Favorites").First(&user, userID).Error; err != nil {
 		return err

@@ -37,12 +37,9 @@ func InsertFavoriteRecipe(c *gin.Context) {
 }
 
 func RemoveFavoriteRecipe(c *gin.Context) {
-	var body struct {
-		RecipeId uint `json:"recipeId"`
-	}
-	c.Bind(&body)
+	recipeId := c.Param("recipeId")
 	id := c.MustGet("id").(float64)
-	result := services.RemoveFavoriteRecipe(id, body.RecipeId)
+	result := services.RemoveFavoriteRecipe(id, recipeId)
 	if result != nil {
 		c.JSON(http.StatusNotFound, gin.H{
 			"error":   result,
@@ -51,6 +48,6 @@ func RemoveFavoriteRecipe(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"message": body,
+		"message": "favorite removed",
 	})
 }
