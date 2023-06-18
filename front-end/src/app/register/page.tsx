@@ -11,7 +11,7 @@ import { registerSchema } from "@/app/validations/registerSchema";
 import { postApi } from "../utils/apiFunctions";
 import { useRouter } from "next/navigation";
 
-type LoginFormData = z.infer<typeof registerSchema>;
+export type LoginFormData = z.infer<typeof registerSchema>;
 
 export default function Home() {
   const {
