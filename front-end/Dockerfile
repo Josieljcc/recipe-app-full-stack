@@ -3,7 +3,15 @@ FROM node:18.12.1-alpine
 # Mudar para o diretório de trabalho /app-frontend
 WORKDIR /app-frontend
 # Copiar os package.json e package-lock.json para o container
-COPY . .
+COPY ./src ./src
+COPY ./public ./public
+COPY ./.eslintrc.json ./
+COPY ./next.config.js ./
+COPY ./package-lock.json ./
+COPY ./package.json ./
+COPY ./tsconfig.json ./
+COPY ./postcss.config.js ./
+COPY ./tailwind.config.js ./
 # Instalar as dependências Node
 RUN npm install
 # Sinalize que aplicação expõe a porta 3000
