@@ -22,7 +22,7 @@ func main() {
 	app := gin.Default()
 	app.Use(cors.Default())
 	app.StaticFS("/images", http.Dir("src/images"))
-	app.GET("/recipes/", controllers.GetRecipeByTitle)
+	app.GET("/recipes/search/", controllers.GetRecipeByTitle)
 	app.PATCH("/favorite/")
 	app.GET("/favorite", middlewares.ValidateToken(), controllers.GetFavorites)
 	app.GET("/recipes/:page", controllers.GetAllRecipes)
