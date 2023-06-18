@@ -20,7 +20,15 @@ func init() {
 
 func main() {
 	app := gin.Default()
-	app.Use(cors.Default())
+	app.Use(cors.New(
+		cors.Config{
+			AllowOrigins:     []string{"http://localhost:3000", "http://localhost:3001"},
+			AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
+			AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
+			ExposeHeaders:    []string{"Content-Length"},
+			AllowCredentials: true,
+		},
+	))
 	app.StaticFS("/images", http.Dir("src/images"))
 	app.GET("/recipes/search/", controllers.GetRecipeByTitle)
 	app.PATCH("/favorite/")
