@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"backend/src/services"
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -17,13 +16,9 @@ func GetFavorites(c *gin.Context) {
 }
 
 func InsertFavoriteRecipe(c *gin.Context) {
-	var body struct {
-		RecipeId uint `json:"recipeId"`
-	}
-	c.Bind(&body)
-	fmt.Println(body)
+	recipeId := c.Param("recipeId")
 	id := c.MustGet("id").(float64)
-	result := services.InsertFavoriteRecipe(id, body.RecipeId)
+	result := services.InsertFavoriteRecipe(id, recipeId)
 	if result != nil {
 		c.JSON(http.StatusNotFound, gin.H{
 			"error":   result,
@@ -32,7 +27,7 @@ func InsertFavoriteRecipe(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
-		"message": body,
+		"message": "favorite inserted",
 	})
 }
 
