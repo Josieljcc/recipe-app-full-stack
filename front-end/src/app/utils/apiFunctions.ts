@@ -33,8 +33,14 @@ export async function getFavorites (token: string): Promise<IRecipe[]> {
 }
 
 export async function postFavorite (token: string, id: number): Promise<void> {
-    await axios.post(`http://localhost:3001/favorite`,
-        { "recipeId": id  },
+    await axios.post(`http://localhost:3001/favorite/${id}`,
+        {},
+        { headers: { Authorization: token } },
+    )
+}
+
+export async function deleteFavorite (token: string, id: number): Promise<void> {
+    await axios.delete(`http://localhost:3001/favorite/${id}`,
         { headers: { Authorization: token } },
     )
 }

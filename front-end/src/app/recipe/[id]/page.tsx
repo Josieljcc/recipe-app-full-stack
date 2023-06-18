@@ -1,14 +1,13 @@
 "use client";
-import { IUser } from "@/app/interfaces";
 import { IRecipe } from "@/app/interfaces/IRecipe";
 import {
+  deleteFavorite,
   getFavorites,
   getRecipeById,
   postFavorite,
 } from "@/app/utils/apiFunctions";
-import axios from "axios";
 import { useRouter } from "next/navigation";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
@@ -42,11 +41,16 @@ function Detail({ params: { id } }: params) {
   }
 
   async function handleFavorite() {
-    if (!isFavorite() && recipe) {
+    if (!recipe) return;
+    if (!isFavorite()) {
       await postFavorite(token, recipe.ID);
       const favorites = await getFavorites(token);
       setFavorites(favorites);
+      return;
     }
+    await deleteFavorite(token, recipe.ID);
+    const favorites = await getFavorites(token);
+    setFavorites(favorites);
   }
 
   const router = useRouter();
