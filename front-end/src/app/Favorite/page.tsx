@@ -6,7 +6,7 @@ import Header, { searchFormData } from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import RecipeCard from "../components/RecipeCard";
 
-function favorite() {
+function Favorite() {
   const [favorites, setFavorites] = useState<IRecipe[]>([]);
   useEffect(() => {
     async function fetchFavorites() {
@@ -42,4 +42,4 @@ function favorite() {
   );
 }
 
-export default favorite;
+export default Favorite;
