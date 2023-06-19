@@ -1,7 +1,11 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import RecipeCard from "../../components/RecipeCard";
-import { getRecipes, getRecipeBySearch } from "@/app/utils/apiFunctions";
+import {
+  getRecipes,
+  getRecipeBySearch,
+  getFavorites,
+} from "@/app/utils/apiFunctions";
 import { IRecipe } from "@/app/interfaces";
 import { useRouter } from "next/navigation";
 import Footer from "@/app/components/Footer/Footer";
@@ -14,12 +18,22 @@ type params = {
 };
 
 function Home({ params: { page } }: params) {
-  const [recipes, setRecipes] = React.useState<IRecipe[]>([]);
+  const [recipes, setRecipes] = useState<IRecipe[]>([]);
+  const [favorites, setFavorites] = useState<IRecipe[]>([]);
+
   useEffect(() => {
     async function fetchRecipes() {
       const recipes = await getRecipes(page);
       setRecipes(recipes);
     }
+    async function fetchFavorites() {
+      const user = localStorage.getItem("user");
+      if (!user) return;
+      const { token } = JSON.parse(user);
+      const favorites = await getFavorites(token);
+      setFavorites(favorites);
+    }
+    fetchFavorites();
     fetchRecipes();
   }, [page]);
 
@@ -58,7 +72,11 @@ function Home({ params: { page } }: params) {
           </div>
         )}
         {recipes.map((recipe: IRecipe) => (
-          <RecipeCard {...recipe} key={recipe.ID} />
+          <RecipeCard
+            recipe={recipe}
+            key={recipe.ID}
+            isFavorite={favorites.some((favorite) => favorite.ID === recipe.ID)}
+          />
         ))}
       </div>
       <div className="fixed h-screen flex right-4 items-center top-0">
