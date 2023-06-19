@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
 import Input from "@/app/components/Input";
 import Button from "@/app/components/Button";
 import { useForm } from "react-hook-form";

@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
 import Input from "@/app/components/Input";
 import Button from "@/app/components/Button";
 import { useForm } from "react-hook-form";
@@ -9,7 +8,7 @@ import { loginSchema } from "@/app/validations/loginSchema";
 import { z } from "zod";
 import imgBg from "@/../public/loginBg.jpg";
 import Link from "next/link";
-import { postApi, postLogin } from "../utils/apiFunctions";
+import { postLogin } from "../utils/apiFunctions";
 import { useRouter } from "next/navigation";
 import { IUserLogin } from "../interfaces/IUserLogin";
 

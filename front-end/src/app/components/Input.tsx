@@ -3,7 +3,7 @@ import { FieldValues, UseFormRegister } from "react-hook-form";
 
 type InputProps = {
   type: string;
-  register: UseFormRegister<FieldValues> | any;
+  register: any;
   placeholder: string;
   className?: string;
 };
