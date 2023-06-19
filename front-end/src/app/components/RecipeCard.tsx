@@ -1,8 +1,15 @@
 import React from "react";
 import { IRecipe } from "../interfaces/IRecipe";
 import Link from "next/link";
+import { MdFavorite } from "react-icons/md";
 
-function RecipeCard(recipe: IRecipe) {
+type RecipeCardProps = {
+  recipe: IRecipe;
+  isFavorite?: boolean;
+};
+
+function RecipeCard(props: RecipeCardProps) {
+  const { recipe, isFavorite } = props;
   const BASE_IMAGE_URL = "http://localhost:3001/images/";
   return (
     <Link
@@ -21,6 +28,12 @@ function RecipeCard(recipe: IRecipe) {
       <h1 className="cut-off m-auto w-[80%] z-20 absolute bottom-2 font-bold text-center">
         {recipe.title}
       </h1>
+      {/* <div className="absolute font-3xl">oi</div> */}
+      {isFavorite && (
+        <div className="absolute flex items-center justify-center rounded-full z-20 bg-zinc-700/70 w-7 h-7 font-3xl top-2 right-2">
+          <MdFavorite className="text-red-600" />
+        </div>
+      )}
     </Link>
   );
 }
