@@ -8,7 +8,7 @@ function Footer() {
       <Link href="/home/0">
         <BiHomeAlt2 />
       </Link>
-      <Link href="/favorites">
+      <Link href="/favorite">
         <MdFavoriteBorder />
       </Link>
       <Link href="/profile">

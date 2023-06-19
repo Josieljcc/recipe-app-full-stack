@@ -27,7 +27,7 @@ export async function getRecipeBySearch (search: string): Promise<IRecipe[]> {
 }
 
 export async function getFavorites (token: string): Promise<IRecipe[]> {
-    const response = await axios.get(`http://localhost:3001/favorite`,
+    const response = await axios.get(`http://backend:3001/favorite`,
     { headers: { Authorization: token } })
     return response.data.favorites
 }
