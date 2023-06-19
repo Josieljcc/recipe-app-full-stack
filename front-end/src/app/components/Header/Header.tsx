@@ -20,8 +20,8 @@ function Header({ search }: { search: (data: searchFormData) => void }) {
   });
 
   return (
-    <div className="fixed top-0 left-0 h-36 w-full z-30 rounded-b-3xl shadow-lg shadow-zinc-950/60 flex justify-center items-center">
-      <div className="absolute w-full h-full top-0 rounded-b-3xl bg-zinc-800" />
+    <div className="fixed top-0 left-0 h-36 w-full z-30 rounded-b-3xl bg-black shadow-lg shadow-zinc-950/60 flex justify-center items-center">
+      <div className="absolute w-full h-full top-0 rounded-b-3xl bg-black/50" />
       <div className="absolute w-full h-full top-0 rounded-b-3xl bg-gradient-to-t from-red-600/30 to-transparent" />
       <Image
         className="absolute top-0 w-full h-full object-cover rounded-b-3xl"
