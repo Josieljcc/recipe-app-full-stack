@@ -35,7 +35,7 @@ function favorite() {
         Favorites
       </h1>
       {favorites.map((recipe: IRecipe) => (
-        <RecipeCard {...recipe} key={recipe.ID} />
+        <RecipeCard recipe={recipe} key={recipe.ID} />
       ))}
       <Footer />
     </div>
