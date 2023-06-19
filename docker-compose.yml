@@ -13,8 +13,7 @@ services:
       - ./front-end/src:/app-frontend/src
       - ./front-end/package.json:/app-frontend/package.json
     environment:
-      - REACT_APP_HOSTNAME=localhost
-      - REACT_APP_BACKEND_PORT=3001
+      - REACT_APP_BACKEND_URL=http://backend:3001
       - NODE_TLS_REJECT_UNAUTHORIZED=0
   backend:
     container_name: app_backend
