@@ -13,7 +13,7 @@ COPY ./tsconfig.json ./
 COPY ./postcss.config.js ./
 COPY ./tailwind.config.js ./
 # Instalar as dependências Node
-RUN npm install
+RUN npm install --ignore-scripts
 # Sinalize que aplicação expõe a porta 3000
 EXPOSE 3000
 # Configurar os comandos para iniciar a aplicação de acordo com as boas práticas
