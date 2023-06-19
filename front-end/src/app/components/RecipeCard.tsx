@@ -5,7 +5,7 @@ import { MdFavorite } from "react-icons/md";
 
 type RecipeCardProps = {
   recipe: IRecipe;
-  isFavorite: boolean;
+  isFavorite?: boolean;
 };
 
 function RecipeCard(props: RecipeCardProps) {
