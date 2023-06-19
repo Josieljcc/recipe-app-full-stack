@@ -20,24 +20,35 @@ func init() {
 
 func main() {
 	app := gin.Default()
-	app.Use(cors.New(
-		cors.Config{
-			AllowOrigins:     []string{"http://localhost:3000", "http://localhost:3001"},
-			AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
-			AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
-			ExposeHeaders:    []string{"Content-Length"},
-			AllowCredentials: true,
-		},
-	))
+	app.Use(setupCORS())
+	recipes := app.Group("/recipes")
+	{
+		recipes.GET("/page/:page", controllers.GetAllRecipes)
+		recipes.GET("/search", controllers.GetRecipeByTitle)
+		recipes.GET("/:id", controllers.GetRecipeById)
+	}
+
+	favorites := app.Group("/favorites")
+	favorites.Use(middlewares.ValidateToken())
+	{
+		favorites.GET("", controllers.GetFavorites)
+		favorites.POST("/:recipeId", controllers.InsertFavoriteRecipe)
+		favorites.DELETE("/:recipeId", controllers.RemoveFavoriteRecipe)
+	}
+
 	app.StaticFS("/images", http.Dir("src/images"))
-	app.GET("/recipes/search/", controllers.GetRecipeByTitle)
-	app.GET("/favorite", middlewares.ValidateToken(), controllers.GetFavorites)
-	app.GET("/recipes/:page", controllers.GetAllRecipes)
-	app.GET("/recipe/:id", controllers.GetRecipeById)
-	app.POST("/favorite/:recipeId", middlewares.ValidateToken(), controllers.InsertFavoriteRecipe)
-	app.DELETE("/favorite/:recipeId", middlewares.ValidateToken(), controllers.RemoveFavoriteRecipe)
 	app.POST("/register", controllers.UserCreate)
 	app.POST("/login", controllers.LoginController)
-	app.GET("/video/:id", controllers.GetVideoUrl)
+
 	app.Run() // listen and serve on db:3001
+}
+
+func setupCORS() gin.HandlerFunc {
+	return cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:3000", "http://localhost:3001"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+	})
 }
