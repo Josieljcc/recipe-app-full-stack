@@ -1,46 +1,49 @@
 import axios from "axios";
 import { ILogin, IRecipe, IUser, IUserLogin } from "../interfaces";
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:3001"
+
 export async function postApi (data: IUser) {
-    const response = await axios.post(`http://localhost:3001/register`, data)
+    const response = await axios.post(`${BACKEND_URL}/register`, data)
     await response.data
 }
 
 export async function postLogin (data: ILogin): Promise<IUserLogin>{
-    const response = await axios.post('http://localhost:3001/login', data)
+    const response = await axios.post(`${BACKEND_URL}/login`, data)
     return response.data
 }
 
 export async function getRecipes (page: string): Promise<IRecipe[]> {
-    const response = await axios.get(`http://localhost:3001/recipes/${page}`)
+    const response = await axios.get(`${BACKEND_URL}/recipes/${page}`)
     return response.data.recipes
 }
 
 export async function getRecipeById (id: string): Promise<IRecipe> {
-    const response = await axios.get(`http://localhost:3001/recipe/${id}`)
+    const response = await axios.get(`${BACKEND_URL}/recipe/${id}`)
     return response.data.recipe
 }
 
 export async function getRecipeBySearch (search: string): Promise<IRecipe[]> {
-    const response = await axios.get(`http://localhost:3001/recipes/search/?q=${search}`)
+    const response = await axios.get(`${BACKEND_URL}/recipes/search/?q=${search}`)
     return response.data.recipes
 }
 
 export async function getFavorites (token: string): Promise<IRecipe[]> {
-    const response = await axios.get(`http://backend:3001/favorite`,
+    console.log(process.env.REACT_APP_BACKEND_URL);
+    const response = await axios.get(`${BACKEND_URL}/favorite`,
     { headers: { Authorization: token } })
     return response.data.favorites
 }
 
 export async function postFavorite (token: string, id: number): Promise<void> {
-    await axios.post(`http://localhost:3001/favorite/${id}`,
+    await axios.post(`${BACKEND_URL}/favorite/${id}`,
         {},
         { headers: { Authorization: token } },
     )
 }
 
 export async function deleteFavorite (token: string, id: number): Promise<void> {
-    await axios.delete(`http://localhost:3001/favorite/${id}`,
+    await axios.delete(`${BACKEND_URL}/favorite/${id}`,
         { headers: { Authorization: token } },
     )
 }
