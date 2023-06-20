@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ILogin, IRecipe, IUser, IUserLogin } from "../interfaces";
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:3001"
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL
 
 export async function postApi (data: IUser) {
     const response = await axios.post(`${BACKEND_URL}/register`, data)
@@ -29,6 +29,8 @@ export async function getRecipeBySearch (search: string): Promise<IRecipe[]> {
 }
 
 export async function getFavorites (token: string): Promise<IRecipe[]> {
+    console.log(token);
+    
     const response = await axios.get(`${BACKEND_URL}/favorites`,
     { headers: { Authorization: token } })
     return response.data.favorites
