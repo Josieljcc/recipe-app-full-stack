@@ -5,6 +5,7 @@ import (
 	"backend/src/database"
 	"backend/src/middlewares"
 	"backend/src/models"
+	"log"
 	"net/http"
 
 	"github.com/gin-contrib/cors"
@@ -40,7 +41,9 @@ func main() {
 	app.POST("/register", controllers.UserCreate)
 	app.POST("/login", controllers.LoginController)
 
-	app.Run() // listen and serve on db:3001
+	if err := app.Run(); err != nil {
+		log.Fatal(err)
+	}
 }
 
 func setupCORS() gin.HandlerFunc {
