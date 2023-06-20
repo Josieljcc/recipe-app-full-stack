@@ -18,12 +18,9 @@ func GetFavorites(c *gin.Context) {
 func InsertFavoriteRecipe(c *gin.Context) {
 	recipeId := c.Param("recipeId")
 	id := c.MustGet("id").(float64)
-	result := services.InsertFavoriteRecipe(id, recipeId)
-	if result != nil {
-		c.JSON(http.StatusNotFound, gin.H{
-			"error":   result,
-			"message": "error to insert favorite",
-		})
+	err := services.InsertFavoriteRecipe(id, recipeId)
+	if err != nil {
+		c.JSON(err.Code, err)
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{
@@ -34,12 +31,9 @@ func InsertFavoriteRecipe(c *gin.Context) {
 func RemoveFavoriteRecipe(c *gin.Context) {
 	recipeId := c.Param("recipeId")
 	id := c.MustGet("id").(float64)
-	result := services.RemoveFavoriteRecipe(id, recipeId)
-	if result != nil {
-		c.JSON(http.StatusNotFound, gin.H{
-			"error":   result,
-			"message": "error to remove favorite",
-		})
+	err := services.RemoveFavoriteRecipe(id, recipeId)
+	if err != nil {
+		c.JSON(err.Code, err)
 		return
 	}
 	c.JSON(http.StatusOK, gin.H{

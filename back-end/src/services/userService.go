@@ -1,15 +1,18 @@
 package services
 
 import (
+	"backend/src/configuration/rest_err"
 	"backend/src/database"
+	"backend/src/interfaces"
 	"backend/src/models"
-
-	"gorm.io/gorm"
 )
 
-func CreateUser(user *models.User) *gorm.DB {
-	var result = database.DB.Create(&user)
-	return result
+func CreateUser(user *interfaces.IUser) *rest_err.RestErr {
+	if err := database.DB.Create(&user).Error; err != nil {
+		customError := rest_err.NewInternalServerError("error to create user", err)
+		return customError
+	}
+	return nil
 }
 
 func GetUserByID(id string) models.User {
