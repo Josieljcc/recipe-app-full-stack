@@ -7,7 +7,14 @@ import (
 	"backend/src/models"
 )
 
-func CreateUser(user *interfaces.IUser) *rest_err.RestErr {
+func CreateUser(user interfaces.User) *rest_err.RestErr {
+	var err error
+	user.Password, err = interfaces.HashPassword(user.Password)
+	if err != nil {
+		customError := rest_err.NewInternalServerError("error to hash password", err)
+		return customError
+	}
+
 	if err := database.DB.Create(&user).Error; err != nil {
 		customError := rest_err.NewInternalServerError("error to create user", err)
 		return customError
