@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"backend/src/auth"
+	"backend/src/configuration/rest_err"
 	"backend/src/interfaces"
 	"backend/src/models"
 	"backend/src/services"
@@ -12,13 +13,13 @@ import (
 
 func LoginController(c *gin.Context) {
 	//get data from request body
-	var body struct {
-		Password string `json:"password"`
-		Email    string `json:"email"`
+	var login interfaces.ILogin
+	if err := c.ShouldBindJSON(&login); err != nil {
+		customError := rest_err.NewBadRequestError("invalid json body")
+		c.JSON(customError.Code, customError)
+		return
 	}
-	c.Bind(&body)
 	//create user
-	login := interfaces.ILogin{Password: body.Password, Email: body.Email}
 	result := services.Login(&login)
 	//return user
 	if result.Error != nil {
@@ -28,12 +29,12 @@ func LoginController(c *gin.Context) {
 		})
 		return
 	}
-	// create token
 	tokenData := interfaces.IDataToken{
 		Name:  result.Data.(models.User).Name,
 		Id:    result.Data.(models.User).ID,
 		Email: result.Data.(models.User).Email,
 	}
+	// create token
 	token := auth.GenerateToken(&tokenData)
 	c.JSON(http.StatusOK, gin.H{
 		"token": token,
