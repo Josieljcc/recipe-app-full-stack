@@ -1,6 +1,7 @@
 package services
 
 import (
+	"backend/src/configuration/rest_err"
 	"backend/src/database"
 	"backend/src/interfaces"
 	"backend/src/models"
@@ -14,15 +15,18 @@ type Response struct {
 	Message string
 }
 
-func Login(c *interfaces.ILogin) *Response {
+func Login(c *interfaces.ILogin) (*models.User, *rest_err.RestErr) {
 	var user models.User
 	resultEmail := database.DB.Where("email = ?", c.Email).First(&user)
 	if resultEmail.Error == gorm.ErrRecordNotFound {
-		return &Response{Error: resultEmail.Error, Message: "User not found"}
+		customError := rest_err.NewBadRequestError("user not found")
+		return nil, customError
 	}
-	result := database.DB.Where("email = ? AND password = ?", c.Email, c.Password).First(&user)
-	if result.Error != nil {
-		return &Response{Error: result.Error, Message: "wrong password"}
+
+	if !interfaces.CheckPasswordHash(c.Password, user.Password) {
+		customError := rest_err.NewBadRequestError("invalid password")
+		return nil, customError
 	}
-	return &Response{Data: user, Message: "User logged in"}
+
+	return &user, nil
 }

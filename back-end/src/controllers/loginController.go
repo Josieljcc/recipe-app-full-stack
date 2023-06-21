@@ -4,7 +4,6 @@ import (
 	"backend/src/auth"
 	"backend/src/configuration/rest_err"
 	"backend/src/interfaces"
-	"backend/src/models"
 	"backend/src/services"
 	"net/http"
 
@@ -20,26 +19,24 @@ func LoginController(c *gin.Context) {
 		return
 	}
 	//create user
-	result := services.Login(&login)
-	//return user
-	if result.Error != nil {
-		c.JSON(http.StatusNotFound, gin.H{
-			"error":   result.Error,
-			"message": result.Message,
-		})
+	result, err := services.Login(&login)
+	if err != nil {
+		c.JSON(err.Code, err)
 		return
 	}
+
+	//return user
 	tokenData := interfaces.IDataToken{
-		Name:  result.Data.(models.User).Name,
-		Id:    result.Data.(models.User).ID,
-		Email: result.Data.(models.User).Email,
+		Name:  result.Name,
+		Id:    result.ID,
+		Email: result.Email,
 	}
 	// create token
 	token := auth.GenerateToken(&tokenData)
 	c.JSON(http.StatusOK, gin.H{
 		"token": token,
-		"id":    result.Data.(models.User).ID,
-		"name":  result.Data.(models.User).Name,
-		"email": result.Data.(models.User).Email,
+		"id":    result.ID,
+		"name":  result.Name,
+		"email": result.Email,
 	})
 }
