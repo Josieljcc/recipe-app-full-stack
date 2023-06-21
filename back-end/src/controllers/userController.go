@@ -16,7 +16,6 @@ func UserCreate(c *gin.Context) {
 		c.JSON(customError.Code, customError)
 		return
 	}
-
 	if err := services.CreateUser(user); err != nil {
 		c.JSON(err.Code, err)
 		return

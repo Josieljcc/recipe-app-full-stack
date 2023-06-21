@@ -26,7 +26,6 @@ func LoginController(c *gin.Context) {
 	}
 
 	//return user
-
 	tokenData := interfaces.IDataToken{
 		Name:  result.Name,
 		Id:    result.ID,
