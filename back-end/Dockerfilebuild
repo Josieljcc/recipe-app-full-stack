@@ -1,0 +1,11 @@
+FROM golang:1.19-alpine as builder
+
+WORKDIR /back-end
+COPY ./src ./src
+COPY ./go.mod ./
+COPY ./go.sum ./
+COPY ./main.go ./
+
+
+RUN GOOS=linux GOARCH=amd64 go build -o server
+ENTRYPOINT [ "/back-end/server" ]
