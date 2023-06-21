@@ -31,9 +31,7 @@ function Favorite() {
   return (
     <div className="bg-zinc-800 relative flex flex-col items-center pb-16 pt-40 min-h-screen">
       <Header search={search} />
-      <h1 className="absolute top-1 z-30 text-2xl font-bold text-zinc-300 mb-8">
-        Favorites
-      </h1>
+      <h1 className="text-2xl font-bold text-zinc-300">Favorites</h1>
       {favorites.map((recipe: IRecipe) => (
         <RecipeCard recipe={recipe} key={recipe.ID} />
       ))}
