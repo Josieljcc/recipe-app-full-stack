@@ -11,12 +11,19 @@ Este é um projeto de receitas full stack que utiliza as seguintes tecnologias:
 
 O objetivo deste projeto é criar uma aplicação web para gerenciamento de receitas. Os usuários podem visualizar receitas, favoritar suas receitas favoritas e ver quais são as receitas favoritas deles. A aplicação foi desenvolvida utilizando Next.js com Tailwind CSS e TypeScript no frontend, Go com Gin-Gonic e GORM no backend, e o banco de dados MySQL para armazenar as informações das receitas e dos usuários. O Docker e o Docker Compose foram utilizados para facilitar o desenvolvimento e configuração do ambiente.
 
+![Imagem 1](./public/app.gif)
+
 ## Funcionalidades
 
 - Listar receitas: Os usuários podem visualizar uma lista de receitas existentes.
 - Favoritar receitas: Os usuários podem marcar as receitas como favoritas.
 - Ver receitas favoritas: Os usuários podem ver quais são as receitas que eles favoritaram.
 - Cadastrar usuário: Os usuários podem criar uma conta para acessar a aplicação.
+
+## Imagens
+
+![Imagem 1](./public/home.png) ![Imagem 2](./public/login.png) ![Imagem 3](./public/register.png) </br>
+![Imagem 3](./public/main.png) ![Imagem 3](./public/favorites.png)
 
 ## Tecnologias Utilizadas
 
@@ -49,8 +56,8 @@ O objetivo deste projeto é criar uma aplicação web para gerenciamento de rece
 
 Antes de iniciar o projeto, certifique-se de ter as seguintes ferramentas instaladas:
 
-- Docker: Versão X.X.X ou superior.
-- Docker Compose: Versão X.X.X ou superior.
+- Docker: Versão 24.0.0 ou superior.
+- Docker Compose: Versão 2.18.1 ou superior.
 
 Para configurar o ambiente de desenvolvimento utilizando o Docker Compose, siga os passos abaixo:
 
@@ -94,17 +101,6 @@ http://localhost:3000
 ```
 
 O script irá ler o arquivo CSV e popular o banco de dados com os dados das receitas, por conta da grande quantidade de receitas o script poderá levar alguns minutos, esse tempo pode variar dependendo do computador que vai executar o scrip.
-
-## Imagens da Aplicação
-
-![Imagem 1](caminho/para/imagem1.png)
-*Legenda da Imagem 1*
-
-![Imagem 2](caminho/para/imagem2.png)
-*Legenda da Imagem 2*
-
-![Imagem 3](caminho/para/imagem3.png)
-*Legenda da Imagem 3*
 
 ## Contribuição
 
