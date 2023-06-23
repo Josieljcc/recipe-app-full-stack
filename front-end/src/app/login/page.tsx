@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/app/validations/loginSchema";
 import { z } from "zod";
-import imgBg from "@/../public/loginBg.jpg";
 import Link from "next/link";
 import { postLogin } from "../utils/apiFunctions";
 import { useRouter } from "next/navigation";
@@ -14,7 +13,7 @@ import { IUserLogin } from "../interfaces/IUserLogin";
 
 type LoginFormData = z.infer<typeof loginSchema>;
 
-export default function Home() {
+export default function Login() {
   const router = useRouter();
   const {
     register,
@@ -32,11 +31,11 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center relative h-screen">
-      <Image
+      <img
         className="absolute brightness-90 -z-10 top-0 object-cover w-full h-full"
-        src={imgBg}
+        src={"/loginBg.jpg"}
         alt="backgroud"
-      ></Image>
+      ></img>
       <div
         className="absolute -z-10 top-0 left-0 object-cover w-full h-full
         bg-gradient-to-b to-black/70 from-transparent"
