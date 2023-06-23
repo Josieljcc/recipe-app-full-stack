@@ -36,8 +36,8 @@ func GetRecipeById(c *gin.Context) {
 
 // get a recipe by title from database
 func GetRecipeByTitle(c *gin.Context) {
-	q := c.Query("q")
-	recipes := services.GetRecipesByTitle(q)
+	search := c.Param("search")
+	recipes := services.GetRecipesByTitle(search)
 	c.JSON(200, gin.H{
 		"recipes": recipes,
 	})

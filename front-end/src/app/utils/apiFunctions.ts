@@ -24,7 +24,7 @@ export async function getRecipeById (id: string): Promise<IRecipe> {
 }
 
 export async function getRecipeBySearch (search: string): Promise<IRecipe[]> {
-    const response = await axios.get(`${BACKEND_URL}/recipes/search/?q=${search}`)
+    const response = await axios.get(`${BACKEND_URL}/recipes/search/${search}`)
     return response.data.recipes
 }
 
