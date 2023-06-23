@@ -22,6 +22,7 @@ export default function Input({
        rounded-md p-3 font-bold ps-4
        text-zinc-800 ${className}`}
       {...register(type)}
+      data-testid={type}
       type={type}
       placeholder={placeholder}
     />
