@@ -10,7 +10,7 @@ func addUserRoutes(rg *gin.RouterGroup) {
 	recipes := rg.Group("/recipes")
 	{
 		recipes.GET("/page/:page", controllers.GetAllRecipes)
-		recipes.GET("/search", controllers.GetRecipeByTitle)
+		recipes.GET("/search/:search", controllers.GetRecipeByTitle)
 		recipes.GET("/:id", controllers.GetRecipeById)
 	}
 }
