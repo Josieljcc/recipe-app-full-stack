@@ -14,7 +14,7 @@ import { IUserLogin } from "../interfaces/IUserLogin";
 
 type LoginFormData = z.infer<typeof loginSchema>;
 
-export default function Home() {
+export default function Login() {
   const router = useRouter();
   const {
     register,
