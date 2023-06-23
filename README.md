@@ -64,12 +64,9 @@ cd recipe-app-full-stack
 ```
 3. Execute o comando para criar e iniciar os containers.
 ```
-docker-compose up
+docker-compose up -d
 ```
-4. Acesse a aplicação no navegador: 
-```
-http://localhost:3000
-```
+
 
 Os containers Docker serão configurados com todas as dependências necessárias para o frontend, backend e banco de dados.
 
@@ -90,6 +87,10 @@ cd src/database/csvRead
 3. Execute o script: 
 ```
 go run csvRead.go
+```
+4. Acesse a aplicação no navegador: 
+```
+http://localhost:3000
 ```
 
 O script irá ler o arquivo CSV e popular o banco de dados com os dados das receitas, por conta da grande quantidade de receitas o script poderá levar alguns minutos, esse tempo pode variar dependendo do computador que vai executar o scrip.
