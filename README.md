@@ -23,7 +23,7 @@ O objetivo deste projeto é criar uma aplicação web para gerenciamento de rece
 ## Imagens
 
 ![Imagem 1](./public/home.png) ![Imagem 2](./public/login.png) ![Imagem 3](./public/register.png) </br>
-![Imagem 3](./public/main.png) ![Imagem 3](./public/favorites.png)
+![Imagem 4](./public/main.png) ![Imagem 5](./public/detail.png) ![Imagem 6](./public/favorites.png)
 
 ## Tecnologias Utilizadas
 
