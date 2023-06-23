@@ -30,7 +30,7 @@ function Main({ params: { page } }: params) {
       const user = localStorage.getItem("user");
       if (!user) return;
       const { token } = JSON.parse(user);
-      const favorites = await getFavorites("teste");
+      const favorites = await getFavorites(token);
       setFavorites(favorites);
     }
     fetchFavorites();

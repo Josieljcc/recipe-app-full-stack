@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Button from "./components/Button";
 import { useRouter } from "next/navigation";
-import imgBg from "@/../public/initialBg.jpg";
 
 export default function Home() {
   const router = useRouter();
@@ -11,11 +10,13 @@ export default function Home() {
       className="flex relative flex-col py-10 pb-20 text-center
     text-zinc-300 font-bold items-center justify-between h-screen"
     >
-      <Image
+      <img
         className="absolute -z-10 top-0 left-0 object-cover w-full h-full"
-        src={imgBg}
+        src={"/initialBg.jpg"}
+        width={800}
+        height={600}
         alt="backgroud"
-      ></Image>
+      ></img>
       <div
         className="absolute -z-10 top-0 left-0 object-cover w-full h-full
         bg-gradient-to-b to-black/70 from-transparent"

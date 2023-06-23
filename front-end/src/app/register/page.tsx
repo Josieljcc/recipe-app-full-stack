@@ -5,7 +5,6 @@ import Button from "@/app/components/Button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import imgBg from "@/../public/loginBg.jpg";
 import { registerSchema } from "@/app/validations/registerSchema";
 import { postApi } from "../utils/apiFunctions";
 import { useRouter } from "next/navigation";
@@ -29,11 +28,11 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center relative h-screen">
-      <Image
+      <img
         className="absolute brightness-90 -z-10 top-0 object-cover w-full h-full"
-        src={imgBg}
+        src={"/loginBg.jpg"}
         alt="backgroud"
-      ></Image>
+      ></img>
       <div
         className="absolute -z-10 top-0 left-0 object-cover w-full h-full
         bg-gradient-to-b to-black/70 from-transparent"
