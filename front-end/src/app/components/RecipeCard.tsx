@@ -21,17 +21,20 @@ function RecipeCard(props: RecipeCardProps) {
     >
       <div className="absolute bg-gradient-to-t rounded-md from-zinc-900 to-transparent z-10 w-full h-full" />
       <img
+        data-testid="recipe-image"
         className="absolute top-auto rounded-md left-auto w-[99%] h-[98%]"
         src={`${BASE_IMAGE_URL}${recipe.image}.jpg`}
-        alt=""
+        alt={`image of ${recipe.title}`}
       />
-      <h1 className="cut-off m-auto w-[80%] z-20 absolute bottom-2 font-bold text-center">
+      <h1
+        data-testid="recipe-title"
+        className="cut-off m-auto w-[80%] z-20 absolute bottom-2 font-bold text-center"
+      >
         {recipe.title}
       </h1>
-      {/* <div className="absolute font-3xl">oi</div> */}
       {isFavorite && (
         <div className="absolute flex items-center justify-center rounded-full z-20 bg-zinc-700/70 w-7 h-7 font-3xl top-2 right-2">
-          <MdFavorite className="text-red-600" />
+          <MdFavorite data-testid="isfavorite" className="text-red-600" />
         </div>
       )}
     </Link>

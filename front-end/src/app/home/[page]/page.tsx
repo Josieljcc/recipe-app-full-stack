@@ -17,7 +17,7 @@ type params = {
   };
 };
 
-function Home({ params: { page } }: params) {
+function Main({ params: { page } }: params) {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
   const [favorites, setFavorites] = useState<IRecipe[]>([]);
 
@@ -30,7 +30,7 @@ function Home({ params: { page } }: params) {
       const user = localStorage.getItem("user");
       if (!user) return;
       const { token } = JSON.parse(user);
-      const favorites = await getFavorites(token);
+      const favorites = await getFavorites("teste");
       setFavorites(favorites);
     }
     fetchFavorites();
@@ -59,6 +59,7 @@ function Home({ params: { page } }: params) {
       <Header search={search} />
       <div className="fixed h-screen flex  items-center top-0">
         <button
+          data-testid="prev"
           className="rotate-180 flex items-center justify-center rounded-full h-12 p-4 bg-zinc-700 text-zinc-300"
           onClick={handlePrev}
         >
@@ -81,6 +82,7 @@ function Home({ params: { page } }: params) {
       </div>
       <div className="fixed h-screen flex right-4 items-center top-0">
         <button
+          data-testid="next"
           className="flex items-center justify-center rounded-full h-12 p-4 bg-zinc-700 text-zinc-300"
           onClick={handleNext}
         >
@@ -92,4 +94,4 @@ function Home({ params: { page } }: params) {
   );
 }
 
-export default Home;
+export default Main;
