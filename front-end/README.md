@@ -1,34 +1,89 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend do Projeto de Receitas
 
-## Getting Started
+Este é o frontend do projeto de receitas, desenvolvido utilizando as seguintes tecnologias:
 
-First, run the development server:
+- Next.js: Um framework React para construção de interfaces web.
+- Tailwind CSS: Uma biblioteca de CSS utilitária para estilização rápida e responsiva.
+- TypeScript: Uma linguagem de programação para adicionar tipagem estática ao JavaScript.
+- React Hook Form: Uma biblioteca para criação de formulários com validação.
+- Zod: Uma biblioteca de validação de esquemas para TypeScript.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## Funcionalidades
+
+### 1. Tela Inicial
+
+![Imagem - Login](../public/home.png)
+
+Tela inícial da aplicação.
+
+### 2. Login de Usuário
+
+![Imagem - Login](../public/login.png)
+
+Os usuários podem fazer login em suas contas para acessar as funcionalidades da aplicação.
+
+### 3. Cadastrar Usuário
+
+![Imagem - Cadastrar Usuário](../public/register.png)
+
+Os usuários podem criar uma conta para acessar a aplicação.
+### 4. Listar e Buscar Receitas
+
+![Imagem - Listar Receitas](../public/main.png)
+
+Os usuários podem visualizar uma lista de receitas existentes ou buscar uma receita pelo campo de busca.
+
+### 4. Detalhes da receita
+
+![Imagem - Favoritar Receitas](../public/detail.png)
+
+Os usuários podem visualizar os ingredientes e modo de preparo de uma receita.
+
+### 4. Ver Receitas Favoritas
+
+![Imagem - Receitas Favoritas](../public/favorites.png)
+
+Os usuários podem ver quais são as receitas que eles favoritaram.
+
+## Configuração do Ambiente
+
+Para configurar o ambiente de desenvolvimento do frontend, você precisará ter o Docker e o Docker Compose instalados em sua máquina. Essas ferramentas facilitarão a criação e execução dos containers necessários para a aplicação.
+
+Siga as instruções fornecidas no [README](../README.md) principal do projeto para iniciar os containers utilizando o Docker Compose. Isso criará os ambientes de desenvolvimento do frontend, backend e banco de dados, prontos para serem utilizados.
+
+## Testes
+
+O frontend deste projeto de receitas utiliza o React Testing Library em conjunto com o Jest para realizar testes unitários e de integração. Essas ferramentas são amplamente utilizadas na comunidade React para garantir a qualidade e a estabilidade do código.
+
+### React Testing Library
+
+A React Testing Library é uma biblioteca de testes focada em testar os componentes React da mesma forma que os usuários interagem com eles.
+
+### Jest
+
+O Jest é um framework de testes em JavaScript amplamente utilizado para projetos React. Ele fornece uma série de recursos poderosos para facilitar a escrita e a execução de testes.
+
+### Executando os Testes
+
+Para executar os testes no frontend do projeto, siga as etapas abaixo:
+
+1. Certifique-se de que as dependências do projeto estejam instaladas. No diretório raiz do projeto, execute o seguinte comando para instalar as dependências:
+
+```
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Após a conclusão da instalação das dependências, execute o seguinte comando para executar os testes:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm test
+```
+Isso iniciará a execução dos testes utilizando o Jest.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Contribuição
 
-## Learn More
+Se você deseja contribuir para este projeto, sinta-se à vontade para abrir um Pull Request. Certifique-se de descrever detalhadamente as alterações propostas.
 
-To learn more about Next.js, take a look at the following resources:
+## Licença
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Este projeto está licenciado sob a [MIT License](https://opensource.org/licenses/MIT).
