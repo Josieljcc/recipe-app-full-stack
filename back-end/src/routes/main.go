@@ -19,6 +19,10 @@ func Run() {
 	}
 }
 
+func healthCheck(c *gin.Context) {
+	c.JSON(200, "ok")
+}
+
 func getRoutes() {
 	v1 := router.Group("/")
 	addUserRoutes(v1)
@@ -26,6 +30,7 @@ func getRoutes() {
 	v1.StaticFS("/images", http.Dir("src/images"))
 	v1.POST("/register", controllers.UserCreate)
 	v1.POST("/login", controllers.LoginController)
+	v1.GET("/", healthCheck)
 }
 
 func setupCORS() gin.HandlerFunc {
